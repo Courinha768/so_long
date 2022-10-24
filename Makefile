@@ -1,10 +1,10 @@
 CC			= 	gcc
-CFLAGS		= 	-Wall -Wextra -Werror -fsanitize=address
+CFLAGS		= 	-Wall -Wextra -Werror -fsanitize=address -g
 RM			= 	/bin/rm -f
 NAME		= 	so_long
 INCLUDES	= 	-Iheaders/
 
-SRCS		=   main.c $(shell find srcs/ -name '*.c')
+SRCS		=   so_long.c get_next_line/get_next_line.c get_next_line/get_next_line_utils.c $(shell find srcs/ -name '*.c') libft/libft.a 
 OBJS		= 	$(SRCS:.c=.o)
 
 
@@ -19,7 +19,7 @@ MLX_FLAGS = -L$(MLX_LIB_DIR) -lmlx_Linux -L/usr/lib -lXext -lX11 -lm -lz
 all: $(NAME) 
 
 $(NAME): $(OBJS)
-		@$(CC) $(^) $(MLX_FLAGS) -o $(@)
+		@$(CC) $(CFLAGS) $(^) $(MLX_FLAGS) -o $(@)
 
 %.o: %.c
 	@$(CC) $(INCLUDES) $(MLX_INCLUDE) -c $(^) -o $(@)
