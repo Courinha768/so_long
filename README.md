@@ -5,13 +5,14 @@ The goal of the project is to create a basic 2D game in which a dolphin escapes 
 
 ![alt text](https://github.com/Courinha768/so_long/blob/master/so_long.png?raw=true)
 
-## Usage
+## Installing
 
-To download the project type:
 ```
 git clone https://github.com/Courinha768/so_long.git
 ```
-or download the zip file on git hub
+or download the zip file on git hub.
+
+## Usage
 
 to compile the project do:
 ```
@@ -21,4 +22,4 @@ And to run the game do :
 ```
 ./so_long [map_name]
 ```
-replacing "[map_name]" with the path to the file of ur map
+replacing "[map_name]" with the path to the file of ur map.
