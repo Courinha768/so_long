@@ -10,7 +10,7 @@
 /*                                                                            */
 /* ************************************************************************** */
 
-#include "../so_long.h"
+#include "../includes/so_long.h"
 
 void	*create_img(void *mlx, char *path)
 {
@@ -21,11 +21,12 @@ void	*create_img(void *mlx, char *path)
 	width = 1;
 	height = 1;
 	img = mlx_xpm_file_to_image(mlx, path, &width, &height);
+	return (img);
 }
 
-void	put_img(void *mlx, void *mlx_win, void *img, int x, int y)
+void	put_img(t_vars mlx, void *img, int y, int x)
 {
-	mlx_put_image_to_window(mlx, mlx_win, img, x, y);
+	mlx_put_image_to_window(mlx.mlx, mlx.win, img, x, y);
 }
 
 t_field	define_img(void *mlx)
@@ -43,5 +44,13 @@ t_field	define_img(void *mlx)
 	field.edge_side.img = create_img(mlx, "sprites/edge_side.xpm");
 	field.edge_top.img = create_img(mlx, "sprites/edge_top.xpm");
 	field.grass1.img = create_img(mlx, "sprites/grass_1.xpm");
+	field.grass2.img = create_img(mlx, "sprites/grass_2.xpm");
+	field.grass3.img = create_img(mlx, "sprites/grass_3.xpm");
+	field.grass4.img = create_img(mlx, "sprites/grass_4.xpm");
 	return (field);
+}
+
+int	w(char c)
+{
+	return (c == 49);
 }

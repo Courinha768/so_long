@@ -34,7 +34,7 @@ char	*ft_strjoin(char const *s1, char const *s2)
 	}
 	while (s2[counter2])
 		join[counter1++] = s2[counter2++];
-	join[counter1] = '\0';
+	join[counter1] = 0;
 	return (join);
 }
 /*

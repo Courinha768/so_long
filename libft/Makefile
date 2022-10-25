@@ -31,21 +31,21 @@ AR = ar -crs
 FLAGS = -Wall -Wextra -Werror
 
 .c.o:
-	$(GCC) $(FLAGS) -I includes -c $< -o $(<:.c=.o)
+	@$(GCC) $(FLAGS) -I includes -c $< -o $(<:.c=.o)
 
 $(NAME): $(OBJS) $(HDR)
-	$(AR) $(NAME) $(OBJS)
+	@$(AR) $(NAME) $(OBJS)
 
 all: $(NAME)
 
 bonus: $(OBJS) $(BONUS_OBJS) $(HDRS)
-	$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
+	@$(AR) $(NAME) $(OBJS) $(BONUS_OBJS)
 
 re: clean fclean all
 
 clean:
-	$(RM) $(OBJS) $(BONUS_OBJS)
+	@$(RM) $(OBJS) $(BONUS_OBJS)
 
 fclean:     clean
-	$(RM) $(NAME)
+	@$(RM) $(NAME)
 .PHONY: all clean fclean re bonus
