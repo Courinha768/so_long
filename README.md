@@ -2,6 +2,8 @@
 
 The goal of the project is to create a basic 2D game in which a dolphin escapes Earth after eating some fish. Instead of a dolphin, fish, and the Earth, it can be any character, any collectible and any place.
 
+![alt text](https://github.com/Courinha768/so_long/blob/master/so_long.png?raw=true)
+
 ## Usage
 
 To download the project type:
