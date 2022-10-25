@@ -18,16 +18,9 @@ char	**get_map(int fd, int lc, char **map)
 char	**define_map(char *file_name)
 {
 	char	**mapc;
-	int		i;
 	int		fd;
 
 	fd = open(file_name, O_RDONLY);
 	mapc = get_map(fd, 0, NULL);
-	i = -1;
-	while (0 && mapc[++i])
-	{
-		ft_putstr_fd(mapc[i], 1);
-		ft_putstr_fd("\n", 1);
-	}
 	return (mapc);
 }
