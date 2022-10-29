@@ -1,29 +1,38 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   hook.c                                             :+:      :+:    :+:   */
+/*   get_map.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/10/29 18:16:32 by aappleto          #+#    #+#             */
-/*   Updated: 2022/10/29 18:16:34 by aappleto         ###   ########.fr       */
+/*   Created: 2022/10/29 18:16:26 by aappleto          #+#    #+#             */
+/*   Updated: 2022/10/29 18:16:27 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-void	move_up(t_all all)
+char	**get_map(int fd, int lc, char **map)
 {
-	printf("hello world");
-	mlx_destroy_image(all.mlx.mlx, all.player.player_f.img);
+	char	*line;
+
+	line = get_next_line(fd);
+	if (line)
+		map = get_map(fd, (lc + 1), map);
+	else if (!map)
+		map = malloc(sizeof(char *) * (lc + 1));
+	if (!map)
+		return (NULL);
+	map[lc] = line;
+	return (map);
 }
 
-int	key_hook(int keycode, t_all all)
+char	**define_map(char *file_name)
 {
-	if (keycode == ESCAPE)
-		destroy_win(all);
-	if (keycode == W)
-		move_up(all);
-	printf("%d\n", keycode);
-	return (0);
+	char	**mapc;
+	int		fd;
+
+	fd = open(file_name, O_RDONLY);
+	mapc = get_map(fd, 0, NULL);
+	return (mapc);
 }

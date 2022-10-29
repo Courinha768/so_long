@@ -6,7 +6,7 @@
 /*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 04:08:51 by aappleto          #+#    #+#             */
-/*   Updated: 2022/10/24 04:08:53 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/10/29 18:16:16 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -60,15 +60,17 @@ void	outside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc)
 			put_img(mlx, imgs.edge_top.img, x * 32 + 24, y * 32);
 		if (!w(map[x + 1][y + 1]) && w(map[x][y + 1]) && w(map[x + 1][y]))
 			put_img(mlx, imgs.corner_tl.img, x * 32 + 24, y * 32 + 24);
-		if (!w(map[x + 1][y - 1]) && w(map[x + 1][y]) && w(map[x][y - 1]))
-			put_img(mlx, imgs.corner_tr.img, x * 32 + 24, y * 32);
+		if (y > 0)
+			if (!w(map[x + 1][y - 1]) && w(map[x + 1][y]) && w(map[x][y - 1]))
+				put_img(mlx, imgs.corner_tr.img, x * 32 + 24, y * 32);
 	}
 	if (x > 0)
 	{
 		if (!w(map[x - 1][y + 1]) && w(map[x - 1][y]) && w(map[x][y + 1]))
 			put_img(mlx, imgs.corner_bl.img, x * 32, y * 32 + 24);
-		if (!w(map[x - 1][y - 1]) && w(map[x - 1][y]) && w(map[x][y - 1]))
-			put_img(mlx, imgs.corner_br.img, x * 32, y * 32);
+		if (y > 0)
+			if (!w(map[x - 1][y - 1]) && w(map[x - 1][y]) && w(map[x][y - 1]))
+				put_img(mlx, imgs.corner_br.img, x * 32, y * 32);
 	}
 }
 
@@ -118,7 +120,7 @@ t_field	create_field(char **map, t_vars mlx)
 {
 	t_field	img;
 
-	img = define_img(mlx.mlx);
+	img = define_field_img(mlx.mlx);
 	put_img(mlx, img.background.img, 1, 1);
 	put_grass(map, mlx, img);
 	put_borders(map, mlx, img);

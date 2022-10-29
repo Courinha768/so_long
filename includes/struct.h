@@ -1,7 +1,19 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   struct.h                                           :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/29 18:13:46 by aappleto          #+#    #+#             */
+/*   Updated: 2022/10/29 18:13:49 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef STRUCT_H
 # define STRUCT_H
 
-typedef struct	s_data {
+typedef struct s_data {
 	void	*img;
 	char	*addr;
 	int		bits_per_pixel;
@@ -9,12 +21,12 @@ typedef struct	s_data {
 	int		endian;
 }	t_data;
 
-typedef struct	s_vars {
+typedef struct s_vars {
 	void	*mlx;
 	void	*win;
 }	t_vars;
 
-typedef struct	s_field {
+typedef struct s_field {
 	t_data	background;
 	t_data	grass1;
 	t_data	grass2;
@@ -31,20 +43,26 @@ typedef struct	s_field {
 	t_data	corner_il;
 }	t_field;
 
-typedef struct	s_player {
+typedef struct s_player {
 	t_data	player_f;
 	t_data	player_b;
 	t_data	player_l;
 	t_data	player_r;
 }	t_player;
 
-typedef struct	s_all {
+typedef struct s_chest {
+	t_data	chest_c;
+	t_data	chest_o;
+}	t_chest;
+
+typedef struct s_all {
 	t_player	player;
 	t_field		field;
 	t_vars		mlx;
+	t_chest		chest;
 }	t_all;
 
-typedef struct	s_loc {
+typedef struct s_loc {
 	int	x;
 	int	y;
 }	t_loc;

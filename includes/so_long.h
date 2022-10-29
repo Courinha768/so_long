@@ -1,3 +1,15 @@
+/* ************************************************************************** */
+/*                                                                            */
+/*                                                        :::      ::::::::   */
+/*   so_long.h                                          :+:      :+:    :+:   */
+/*                                                    +:+ +:+         +:+     */
+/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*                                                +#+#+#+#+#+   +#+           */
+/*   Created: 2022/10/29 18:13:35 by aappleto          #+#    #+#             */
+/*   Updated: 2022/10/29 18:13:39 by aappleto         ###   ########.fr       */
+/*                                                                            */
+/* ************************************************************************** */
+
 #ifndef SO_LONG_H
 # define SO_LONG_H
 
@@ -7,29 +19,35 @@
 # include "define.h"
 # include <mlx.h>
 
-int			sl_strlen_v(char **map);
+//so_long.c
+void		start_game(char *map_name);
 
-char		**get_map(int fd, int lc, char **map);
+//so_long_utils.c
+void		*create_img(void *mlx, char *path);
+void		put_img(t_vars mlx, void *img, int y, int x);
+void		free_map(char **map);
+
+//create_map.c
 char		**define_map(char *file_name);
 
-void		put_grass(char **map, t_vars mlx, t_field imgs);
-void		outside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc);
-void		inside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc);
-void		put_borders(char **map, t_vars mlx, t_field imgs);
+//create_field
 t_field		create_field(char **map, t_vars mlx);
+t_field		define_field_img(void *mlx);
+int			w(char c);
 
+
+//place_player.c
 t_player	place_player(char **map, t_vars mlx);
-t_player	define_player_imgs(void *mlx);
 
+//hook.c
 int			key_hook(int keycode, t_all all);
 
+//hook_ESC.c
 void		destroy_win(t_all all);
 void		destroy_player_imgs(t_all all);
 void		destroy_field_imgs(t_all all);
-int			w(char c);
 
-void		*create_img(void *mlx, char *file_name);
-void		put_img(t_vars mlx, void *img, int x, int y);
-t_field		define_img(void *mlx);
+//place_exit.c
+t_chest 	place_exit(char **map, t_vars mlx);
 
 #endif
