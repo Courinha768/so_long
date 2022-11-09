@@ -36,17 +36,16 @@ int	sl_strlen_v(char **map)
 
 void	start_game(char *map_name)
 {
-	char		**map;
-	t_all		all;
+	t_all	*all;
 
-	map = define_map(map_name);
-	all.mlx.mlx = mlx_init();
-	all.mlx.win = mlx_new_window(all.mlx.mlx, (ft_strlen(map[0]) - 1) * 32, sl_strlen_v(map) * 32, "so_long");
-	all.field = create_field(map, all.mlx);
-	all.player = place_player(map, all.mlx);
-	all.chest = place_exit(map, all.mlx);
-	mlx_loop(all.mlx.mlx);
-	free_map(map);
+	all->map = define_map(map_name);
+	all->mlx.mlx = mlx_init();
+	all->mlx.win = mlx_new_window(all->mlx.mlx, (ft_strlen(all->map[0]) - 1) * 32, sl_strlen_v(all->map) * 32, "so_long");
+	all->field = create_field(all->map, all->mlx);
+	all->player = place_player(all->map, all->mlx);
+	all->chest = place_exit(all->map, all->mlx);
+	mlx_key_hook(all->mlx.win, key_hook, &all);
+	mlx_loop(all->mlx.mlx);
 }
 
 int	main(int ac, char **av)

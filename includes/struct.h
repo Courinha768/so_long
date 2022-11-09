@@ -61,6 +61,7 @@ typedef struct s_all {
 	t_field		field;
 	t_vars		mlx;
 	t_chest		chest;
+	char		**map;
 }	t_all;
 
 typedef struct s_loc {
