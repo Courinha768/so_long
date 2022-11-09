@@ -41,6 +41,7 @@ typedef struct s_field {
 	t_data	corner_br;
 	t_data	corner_ir;
 	t_data	corner_il;
+	t_data	key;
 }	t_field;
 
 typedef struct s_player {

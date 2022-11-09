@@ -30,6 +30,7 @@ t_field	define_field_img(void *mlx)
 	field.grass2.img = create_img(mlx, "sprites/grass_2.xpm");
 	field.grass3.img = create_img(mlx, "sprites/grass_3.xpm");
 	field.grass4.img = create_img(mlx, "sprites/grass_4.xpm");
+	field.key.img = create_img(mlx, "sprites/key.xpm");
 	return (field);
 }
 

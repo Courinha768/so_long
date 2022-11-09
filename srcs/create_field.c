@@ -27,7 +27,9 @@ void	put_grass(char **map, t_vars mlx, t_field imgs)
 		{
 			if (map[x][y] != 49)
 			{
-				if (k % 2)
+				if (map[x][y] == 67)
+					put_img(mlx, imgs.key.img, x * 32, y * 32);
+				else if (k % 2)
 					put_img(mlx, imgs.grass3.img, x * 32, y * 32);
 				else if (k % 3)
 					put_img(mlx, imgs.grass2.img, x * 32, y * 32);

@@ -12,6 +12,18 @@
 
 #include "../includes/so_long.h"
 
+int	print_error(int	value)
+{
+	write(2, "ERROR\n", 6);
+	if (value == 1)
+		write(2, "wrong number of arguments\n", 26);
+	if (value == 2)
+		write(2, "file extension should be .ber\n", 30);
+	if (value == 3)
+		write(2, "map is not constructed correctly\n", 33);
+	return (0);
+}
+
 int	sl_strlen_v(char **map)
 {
 	int	i;
@@ -39,9 +51,11 @@ void	start_game(char *map_name)
 
 int	main(int ac, char **av)
 {
-	if (ac != 2)
-		return (0);
-	//verify_map
+	int	map_value;
+
+	map_value = verify(ac, av);
+	if (map_value)
+		return (print_error(map_value));
 	start_game(av[1]);
 	return (0);
 }
