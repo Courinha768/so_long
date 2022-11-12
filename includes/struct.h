@@ -45,15 +45,16 @@ typedef struct s_field {
 }	t_field;
 
 typedef struct s_player {
-	t_data	player_f;
-	t_data	player_b;
-	t_data	player_l;
-	t_data	player_r;
+	t_data	player;
+	int		x;
+	int		y;
 }	t_player;
 
 typedef struct s_chest {
 	t_data	chest_c;
 	t_data	chest_o;
+	int		x;
+	int		y;
 }	t_chest;
 
 typedef struct s_all {
@@ -62,6 +63,8 @@ typedef struct s_all {
 	t_vars		mlx;
 	t_chest		chest;
 	char		**map;
+	int			collectible;
+	int			move_count;
 }	t_all;
 
 typedef struct s_loc {

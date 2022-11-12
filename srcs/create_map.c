@@ -29,10 +29,10 @@ char	**get_map(int fd, int lc, char **map)
 
 char	**define_map(char *file_name)
 {
-	char	**mapc;
+	char	**map;
 	int		fd;
 
 	fd = open(file_name, O_RDONLY);
-	mapc = get_map(fd, 0, NULL);
-	return (mapc);
+	map = get_map(fd, 0, NULL);
+	return (map);
 }

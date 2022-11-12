@@ -12,31 +12,32 @@
 
 #include "../includes/so_long.h"
 
-t_player	define_player_imgs(void *mlx)
+void	define_player_imgs(t_all *all)
 {
-	t_player	player;
+	void	*mlx;
 
-	player.player_f.img = create_img(mlx, "sprites/player_f.xpm");
-	player.player_l.img = create_img(mlx, "sprites/player_l.xpm");
-	player.player_b.img = create_img(mlx, "sprites/player_b.xpm");
-	player.player_r.img = create_img(mlx, "sprites/player_r.xpm");
-	return (player);
+	mlx = all->mlx.mlx;
+	all->player.player.img = create_img(mlx, "sprites/player.xpm");
 }
 
-t_player	place_player(char **map, t_vars mlx)
+void	render_player(t_all *all)
 {
 	int			x;
 	int			y;
-	t_player	player;
 
 	x = 0;
-	player = define_player_imgs(mlx.mlx);
-	while (map[++x])
+	define_player_imgs(all);
+	while (all->map[++x])
 	{
 		y = 0;
-		while (map[x][++y])
-			if (map[x][y] == 80)
-				put_img(mlx, player.player_f.img, 32 * x - 18, 32 * y + 5);
+		while (all->map[x][++y])
+		{
+			if (all->map[x][y] == 80)
+			{
+				all->player.x = x;
+				all ->player.y = y;
+				put_img(all, all->player.player.img, 32 * x, 32 * y);
+			}
+		}
 	}
-	return (player);
 }

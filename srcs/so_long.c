@@ -12,49 +12,25 @@
 
 #include "../includes/so_long.h"
 
-int	print_error(int	value)
+void	start_game(char **map)
 {
-	write(2, "ERROR\n", 6);
-	if (value == 1)
-		write(2, "wrong number of arguments\n", 26);
-	if (value == 2)
-		write(2, "file extension should be .ber\n", 30);
-	if (value == 3)
-		write(2, "map is not constructed correctly\n", 33);
-	return (0);
-}
+	t_all	all;
 
-int	sl_strlen_v(char **map)
-{
-	int	i;
-
-	i = 0;
-	while (map[i])
-		i++;
-	return (i);
-}
-
-void	start_game(char *map_name)
-{
-	t_all	*all;
-
-	all->map = define_map(map_name);
-	all->mlx.mlx = mlx_init();
-	all->mlx.win = mlx_new_window(all->mlx.mlx, (ft_strlen(all->map[0]) - 1) * 32, sl_strlen_v(all->map) * 32, "so_long");
-	all->field = create_field(all->map, all->mlx);
-	all->player = place_player(all->map, all->mlx);
-	all->chest = place_exit(all->map, all->mlx);
-	mlx_key_hook(all->mlx.win, key_hook, &all);
-	mlx_loop(all->mlx.mlx);
+	init_all(&all, map);
+	render(&all);
+	mlx_key_hook(all.mlx.win, key_hook, &all);
+	mlx_loop(all.mlx.mlx);
 }
 
 int	main(int ac, char **av)
 {
-	int	map_value;
+	int		map_value;
+	char	**map;
 
 	map_value = verify(ac, av);
 	if (map_value)
 		return (print_error(map_value));
-	start_game(av[1]);
+	map = define_map(av[1]);
+	start_game(map);
 	return (0);
 }

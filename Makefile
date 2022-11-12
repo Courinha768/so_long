@@ -35,13 +35,17 @@ exc			:	${NAME}
 
 
 clean		:
+	@echo "\033[1;35m[🧹Cleaning...🧹]\033[0;0m"
 	@make clean -C libft
 	@make clean -C mlx
 	@rm -rf ${OBJS}
+	@echo "\033[1;35m[🧹Cleaned🧹]\033[0;0m"
 
 fclean		:	clean
+	@echo "\033[1;35m[🧹FCleaning...🧹]\033[0;0m"
 	@make fclean -C libft
 	@rm -rf ${NAME}
+	@echo "\033[1;35m[🧹FCleaned🧹]\033[0;0m"
 
 re			:	fclean all
 

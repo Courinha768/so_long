@@ -12,18 +12,68 @@
 
 #include "../includes/so_long.h"
 
-void	move_up(t_all all)
+void	is_collectible(t_all *all, char d)
 {
-	printf("hello world");
-	mlx_destroy_image(all.mlx.mlx, all.player.player_f.img);
+	if (d == 'u')
+	{
+		if (all->map[all->player.x - 1][all->player.y] == 'C')
+		{
+			all->collectible--;
+			all->map[all->player.x - 1][all->player.y] = 48;
+		}
+	}
+	if (d == 'd')
+	{
+		if (all->map[all->player.x + 1][all->player.y] == 'C')
+		{
+			all->collectible--;
+			all->map[all->player.x + 1][all->player.y] = 48;
+		}
+	}
+	is_collectible2(all, d);
 }
 
-int	key_hook(int keycode, t_all all)
+void	is_collectible2(t_all *all, char d)
+{
+	if (d == 'l')
+	{
+		if (all->map[all->player.x][all->player.y - 1] == 'C')
+		{
+			all->collectible--;
+			all->map[all->player.x][all->player.y - 1] = 48;
+		}
+	}
+	if (d == 'r')
+	{
+		if (all->map[all->player.x][all->player.y + 1] == 'C')
+		{
+			all->collectible--;
+			all->map[all->player.x][all->player.y + 1] = 48;
+		}
+	}
+}
+
+void	exit_game(t_all *all)
+{
+	free_map(all->map);
+	mlx_destroy_window(all->mlx.mlx, all->mlx.win);
+	exit(1);
+}
+
+int	key_hook(int keycode, t_all *all)
 {
 	if (keycode == ESCAPE)
-		destroy_win(all);
-	if (keycode == W)
+		exit_game(all);
+	if (keycode == UP || keycode == W)
 		move_up(all);
-	printf("%d\n", keycode);
+	if (keycode == DOWN || keycode == S)
+		move_down(all);
+	if (keycode == LEFT || keycode == A)
+		move_left(all);
+	if (keycode == RIGHT || keycode == D)
+		move_right(all);
+	if (!all->collectible)
+		put_img(all, all->chest.chest_o.img, all->chest.x, all->chest.y);
+	update_mc(all);
 	return (0);
 }

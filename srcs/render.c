@@ -12,7 +12,7 @@
 
 #include "../includes/so_long.h"
 
-void	put_grass(char **map, t_vars mlx, t_field imgs)
+void	render_grass(t_all *all)
 {
 	int	x;
 	int	y;
@@ -20,23 +20,16 @@ void	put_grass(char **map, t_vars mlx, t_field imgs)
 
 	x = -1;
 	k = 0;
-	while (map[++x])
+	while (all->map[++x])
 	{
 		y = -1;
-		while (map[x][++y])
+		while (all->map[x][++y])
 		{
-			if (map[x][y] != 49)
+			if (all->map[x][y] != 49)
 			{
-				if (map[x][y] == 67)
-					put_img(mlx, imgs.key.img, x * 32, y * 32);
-				else if (k % 2)
-					put_img(mlx, imgs.grass3.img, x * 32, y * 32);
-				else if (k % 3)
-					put_img(mlx, imgs.grass2.img, x * 32, y * 32);
-				else if (k % 5)
-					put_img(mlx, imgs.grass4.img, x * 32, y * 32);
-				else
-					put_img(mlx, imgs.grass1.img, x * 32, y * 32);
+				put_img(all, chose_grass(all, k), x * 32, y * 32);
+				if (all->map[x][y] == 67)
+					put_img(all, all->field.key.img, x * 32, y * 32);
 				k++;
 			}
 		}
@@ -51,28 +44,22 @@ void	outside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc)
 	x = loc.x;
 	y = loc.y;
 	if (x > 0 && !w(map[x - 1][y]))
-		put_img(mlx, imgs.edge_bot.img, x * 32, y * 32);
+		put_img2(mlx, imgs.edge_bot.img, x * 32, y * 32);
 	if (map[x][y + 2] && !w(map[x][y + 1]) && map[x][y + 1])
-		put_img(mlx, imgs.edge_side.img, x * 32, y * 32 + 24);
+		put_img2(mlx, imgs.edge_side.img, x * 32, y * 32 + 24);
 	if (y > 0 && !w(map[x][y - 1]))
-		put_img(mlx, imgs.edge_side.img, x * 32, y * 32);
+		put_img2(mlx, imgs.edge_side.img, x * 32, y * 32);
+	if (x > 0)
+		outside_borders2(map, mlx, imgs, loc);
 	if (map[x + 1])
 	{
 		if (!w(map[x + 1][y]))
-			put_img(mlx, imgs.edge_top.img, x * 32 + 24, y * 32);
+			put_img2(mlx, imgs.edge_top.img, x * 32 + 24, y * 32);
 		if (!w(map[x + 1][y + 1]) && w(map[x][y + 1]) && w(map[x + 1][y]))
-			put_img(mlx, imgs.corner_tl.img, x * 32 + 24, y * 32 + 24);
+			put_img2(mlx, imgs.corner_tl.img, x * 32 + 24, y * 32 + 24);
 		if (y > 0)
 			if (!w(map[x + 1][y - 1]) && w(map[x + 1][y]) && w(map[x][y - 1]))
-				put_img(mlx, imgs.corner_tr.img, x * 32 + 24, y * 32);
-	}
-	if (x > 0)
-	{
-		if (!w(map[x - 1][y + 1]) && w(map[x - 1][y]) && w(map[x][y + 1]))
-			put_img(mlx, imgs.corner_bl.img, x * 32, y * 32 + 24);
-		if (y > 0)
-			if (!w(map[x - 1][y - 1]) && w(map[x - 1][y]) && w(map[x][y - 1]))
-				put_img(mlx, imgs.corner_br.img, x * 32, y * 32);
+				put_img2(mlx, imgs.corner_tr.img, x * 32 + 24, y * 32);
 	}
 }
 
@@ -86,20 +73,20 @@ void	inside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc)
 	if (x > 0)
 	{
 		if (!w(map[x - 1][y]) && !w(map[x][y - 1]))
-			put_img(mlx, imgs.corner_tl.img, x * 32, y * 32);
+			put_img2(mlx, imgs.corner_tl.img, x * 32, y * 32);
 		if (!w(map[x - 1][y]) && !w(map[x][y + 1]))
-			put_img(mlx, imgs.corner_tr.img, x * 32, y * 32 + 24);
+			put_img2(mlx, imgs.corner_tr.img, x * 32, y * 32 + 24);
 	}
 	if (map[x + 1])
 	{
 		if (!w(map[x + 1][y]) && !w(map[x][y - 1]))
-			put_img(mlx, imgs.corner_il.img, x * 32 + 24, y * 32);
+			put_img2(mlx, imgs.corner_il.img, x * 32 + 24, y * 32);
 		if (!w(map[x + 1][y]) && !w(map[x][y + 1]))
-			put_img(mlx, imgs.corner_ir.img, x * 32 + 24, y * 32 + 24);
+			put_img2(mlx, imgs.corner_ir.img, x * 32 + 24, y * 32 + 24);
 	}
 }
 
-void	put_borders(char **map, t_vars mlx, t_field imgs)
+void	render_borders(char **map, t_vars mlx, t_field imgs)
 {
 	t_loc	loc;
 
@@ -118,13 +105,16 @@ void	put_borders(char **map, t_vars mlx, t_field imgs)
 	}
 }
 
-t_field	create_field(char **map, t_vars mlx)
+void	render(t_all *all)
 {
-	t_field	img;
+	int	white;
 
-	img = define_field_img(mlx.mlx);
-	put_img(mlx, img.background.img, 1, 1);
-	put_grass(map, mlx, img);
-	put_borders(map, mlx, img);
-	return (img);
+	white = 16448250;
+	define_field_img(all);
+	put_img(all, all->field.background.img, 1, 1);
+	render_borders(all->map, all->mlx, all->field);
+	render_grass(all);
+	place_exit(all);
+	render_player(all);
+	mlx_string_put(all->mlx.mlx, all->mlx.win, 6, 15, white, "MOVE COUNT : ");
 }
