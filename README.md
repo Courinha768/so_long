@@ -23,3 +23,17 @@ And to run the game do :
 ./so_long [map_name]
 ```
 replacing "[map_name]" with the path to the file of ur map.
+
+## Map creation
+
+To create a map you have to create a file with the .ber extension.
+All maps should be rectangles and the borders should be made of walls
+U can look at the given maps to understand better
+
+| character | Description                                     |
+| --------- | -----------------------------------------------|
+| 0         | free space |
+| 1         | wall |
+| P         | player starting point |
+| E         | exit |
+| C         | collectables |

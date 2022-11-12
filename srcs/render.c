@@ -12,6 +12,50 @@
 
 #include "../includes/so_long.h"
 
+void	place_exit(t_all *all)
+{
+	int	x;
+	int	y;
+
+	define_chest_imgs(all);
+	x = 0;
+	while (all->map[++x])
+	{
+		y = 0;
+		while (all->map[x][++y])
+		{
+			if (all->map[x][y] == 69)
+			{
+				put_img(all, all->chest.chest_c.img, 32 * x, 32 * y);
+				all->chest.x = x * 32 - 16;
+				all->chest.y = y * 32;
+			}
+		}
+	}
+}
+
+void	render_player(t_all *all)
+{
+	int			x;
+	int			y;
+
+	x = 0;
+	define_player_imgs(all);
+	while (all->map[++x])
+	{
+		y = 0;
+		while (all->map[x][++y])
+		{
+			if (all->map[x][y] == 80)
+			{
+				all->player.x = x;
+				all ->player.y = y;
+				put_img(all, all->player.player.img, 32 * x, 32 * y);
+			}
+		}
+	}
+}
+
 void	render_grass(t_all *all)
 {
 	int	x;
@@ -31,75 +75,6 @@ void	render_grass(t_all *all)
 				if (all->map[x][y] == 67)
 					put_img(all, all->field.key.img, x * 32, y * 32);
 				k++;
-			}
-		}
-	}
-}
-
-void	outside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc)
-{
-	int	x;
-	int	y;
-
-	x = loc.x;
-	y = loc.y;
-	if (x > 0 && !w(map[x - 1][y]))
-		put_img2(mlx, imgs.edge_bot.img, x * 32, y * 32);
-	if (map[x][y + 2] && !w(map[x][y + 1]) && map[x][y + 1])
-		put_img2(mlx, imgs.edge_side.img, x * 32, y * 32 + 24);
-	if (y > 0 && !w(map[x][y - 1]))
-		put_img2(mlx, imgs.edge_side.img, x * 32, y * 32);
-	if (x > 0)
-		outside_borders2(map, mlx, imgs, loc);
-	if (map[x + 1])
-	{
-		if (!w(map[x + 1][y]))
-			put_img2(mlx, imgs.edge_top.img, x * 32 + 24, y * 32);
-		if (!w(map[x + 1][y + 1]) && w(map[x][y + 1]) && w(map[x + 1][y]))
-			put_img2(mlx, imgs.corner_tl.img, x * 32 + 24, y * 32 + 24);
-		if (y > 0)
-			if (!w(map[x + 1][y - 1]) && w(map[x + 1][y]) && w(map[x][y - 1]))
-				put_img2(mlx, imgs.corner_tr.img, x * 32 + 24, y * 32);
-	}
-}
-
-void	inside_borders(char **map, t_vars mlx, t_field imgs, t_loc loc)
-{
-	int	x;
-	int	y;
-
-	x = loc.x;
-	y = loc.y;
-	if (x > 0)
-	{
-		if (!w(map[x - 1][y]) && !w(map[x][y - 1]))
-			put_img2(mlx, imgs.corner_tl.img, x * 32, y * 32);
-		if (!w(map[x - 1][y]) && !w(map[x][y + 1]))
-			put_img2(mlx, imgs.corner_tr.img, x * 32, y * 32 + 24);
-	}
-	if (map[x + 1])
-	{
-		if (!w(map[x + 1][y]) && !w(map[x][y - 1]))
-			put_img2(mlx, imgs.corner_il.img, x * 32 + 24, y * 32);
-		if (!w(map[x + 1][y]) && !w(map[x][y + 1]))
-			put_img2(mlx, imgs.corner_ir.img, x * 32 + 24, y * 32 + 24);
-	}
-}
-
-void	render_borders(char **map, t_vars mlx, t_field imgs)
-{
-	t_loc	loc;
-
-	loc.x = -1;
-	while (map[++loc.x])
-	{
-		loc.y = -1;
-		while (map[loc.x][++loc.y])
-		{
-			if (map[loc.x][loc.y] == 49)
-			{
-				outside_borders(map, mlx, imgs, loc);
-				inside_borders(map, mlx, imgs, loc);
 			}
 		}
 	}
