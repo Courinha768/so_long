@@ -1,28 +1,34 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   render_utils.c                                     :+:      :+:    :+:   */
+/*   is_possible_utils.c                                :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
-/*   Created: 2022/11/13 23:05:23 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/13 23:05:24 by aappleto         ###   ########.fr       */
+/*   Created: 2022/11/13 23:05:04 by aappleto          #+#    #+#             */
+/*   Updated: 2022/11/13 23:05:05 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../includes/so_long.h"
 
-int	w(char c)
+int	equals_loc(t_loc coord1, t_loc coord2)
 {
-	return (c == 49);
+	if ((coord1.x == coord2.x) && (coord1.y == coord2.y))
+		return (1);
+	return (0);
 }
 
-void	*chose_grass(t_all *all, int k)
+int	is_passable(char c)
 {
-	if (k % 2)
-		return (all->field.grass3.img);
-	else if (k % 3)
-		return (all->field.grass2.img);
-	else
-		return (all->field.grass1.img);
+	return (c == 48 || c == 69 || c == 67);
+}
+
+t_loc	new_loc(int x, int y)
+{
+	t_loc	ret;
+
+	ret.x = x;
+	ret.y = y;
+	return (ret);
 }

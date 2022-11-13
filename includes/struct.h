@@ -65,6 +65,7 @@ typedef struct s_all {
 	char		**map;
 	int			collectible;
 	int			move_count;
+	int			complete;
 }	t_all;
 
 typedef struct s_loc {

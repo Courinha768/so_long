@@ -28,15 +28,17 @@ void	init_all(t_all *all, char **map);
 void	*create_img(void *mlx, char *path);
 void	put_img(t_all *all, void *img, int y, int x);
 void	put_img2(t_vars mlx, void *img, int y, int x);
-void	free_map(char **map);
+int		free_map(char **map);
 int		sl_strlen_v(char **map);
 
 int		verify(int ac, char **av);
 int		verify_name(char *file);
 int		verify_map(char	*file_name);
+int 	is_possible(char *file_name);
 
 int		not_token(char c);
 int		linelen(char **map);
+int		correct_nbr_c2(char **map, int i, int j);
 
 void	render(t_all *all);
 void	render_borders(char **map, t_vars mlx, t_field imgs);
@@ -68,5 +70,14 @@ char	**get_map(int fd, int lc, char **map);
 
 void	define_chest_imgs(t_all *all);
 void	place_exit(t_all *all);
+
+int		is_possible(char *file_name);
+t_loc	solve(t_loc current, char **map, int lines, int columns);
+void	possibilities(t_loc c, char **map, t_loc *poss, t_loc size);
+void	possibilities2(t_loc c, char **map, t_loc *poss, t_loc size);
+t_loc	get_entrance(char **map);
+t_loc	new_loc(int x, int y);
+int		is_passable(char c);
+int		equals_loc(t_loc coord1, t_loc coord2);
 
 #endif

@@ -30,7 +30,7 @@ To create a map you have to create a file with the .ber extension.
 All maps should be rectangles and the borders should be made of walls
 U can look at the given maps to understand better
 
-| character | Description                                     |
+| Character | Description                                     |
 | --------- | -----------------------------------------------|
 | 0         | free space |
 | 1         | wall |

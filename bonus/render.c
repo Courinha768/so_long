@@ -91,6 +91,9 @@ get the chest chosing the shortest possible route.\n", 1);
 
 void	render(t_all *all)
 {
+	int	white;
+
+	white = 16448250;
 	print_shell();
 	define_field_img(all);
 	put_img(all, all->field.background.img, 1, 1);
@@ -98,8 +101,6 @@ void	render(t_all *all)
 	render_grass(all);
 	place_exit(all);
 	render_player(all);
+	mlx_string_put(all->mlx.mlx, all->mlx.win, 6, 15, white, "MOVE COUNT : ");
+	mlx_string_put(all->mlx.mlx, all->mlx.win, 82, 15, white, "0");
 }
-// int	white;
-
-// 	white = 16448250;
-// mlx_string_put(all->mlx.mlx, all->mlx.win, 6, 15, white, "MOVE COUNT : ");

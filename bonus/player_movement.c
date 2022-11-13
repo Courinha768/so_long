@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
+/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 01:37:05 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/13 23:05:16 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/12 01:37:07 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,19 @@
 
 void	update_mc(t_all *all)
 {
-	ft_putstr_fd("move count : ", 1);
-	ft_putnbr_fd(all->move_count, 1);
-	ft_putchar_fd(10, 1);
+	void	*mlx;
+	void	*win;
+	char	*str1;
+	char	*str2;
+
+	mlx = all->mlx.mlx;
+	win = all->mlx.win;
+	str1 = ft_itoa(all->move_count - 1);
+	str2 = ft_itoa(all->move_count);
+	mlx_string_put(mlx, win, 82, 15, 2763306, str1);
+	mlx_string_put(mlx, win, 82, 15, 16448250, str2);
+	free(str1);
+	free(str2);
 }
 
 void	move_up(t_all *all)
