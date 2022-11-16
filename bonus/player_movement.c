@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   player_movement.c                                  :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 01:37:05 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/12 01:37:07 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:56:32 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,6 +34,8 @@ void	move_up(t_all *all)
 	if (!w(all->map[all->player.x - 1][all->player.y]))
 	{
 		is_collectible(all, 'u');
+		if (all->map[all->player.x - 1][all->player.y] == 65)
+			exit_game(all);
 		if (all->map[all->player.x - 1][all->player.y] == 69)
 		{
 			if (!all->collectible)
@@ -60,6 +62,8 @@ void	move_down(t_all *all)
 	if (!w(all->map[all->player.x + 1][all->player.y]))
 	{
 		is_collectible(all, 'd');
+		if (all->map[all->player.x + 1][all->player.y] == 65)
+			exit_game(all);
 		if (all->map[all->player.x + 1][all->player.y] == 69)
 		{
 			if (!all->collectible)
@@ -86,6 +90,8 @@ void	move_left(t_all *all)
 	if (!w(all->map[all->player.x][all->player.y - 1]))
 	{
 		is_collectible(all, 'l');
+		if (all->map[all->player.x][all->player.y - 1] == 65)
+			exit_game(all);
 		if (all->map[all->player.x][all->player.y - 1] == 69)
 		{
 			if (!all->collectible)
@@ -112,6 +118,8 @@ void	move_right(t_all *all)
 	if (!w(all->map[all->player.x][all->player.y + 1]))
 	{
 		is_collectible(all, 'r');
+		if (all->map[all->player.x][all->player.y + 1] == 65)
+			exit_game(all);
 		if (all->map[all->player.x][all->player.y + 1] == 69)
 		{
 			if (!all->collectible)

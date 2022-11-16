@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   create_level.c                                     :+:      :+:    :+:   */
+/*   render.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/24 04:08:51 by aappleto          #+#    #+#             */
-/*   Updated: 2022/10/29 18:16:16 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 19:38:51 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -52,6 +52,8 @@ void	render_player(t_all *all)
 				all ->player.y = y;
 				put_img(all, all->player.player.img, 32 * x, 32 * y);
 			}
+			else if (all->map[x][y] == 65)
+				put_img(all, all->player.enemy.img, 32 * x, 32 * y);
 		}
 	}
 }
