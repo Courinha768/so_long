@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify_utils.c                                     :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:01:50 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/09 20:01:51 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:22:33 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,6 +48,30 @@ int	correct_nbr_c2(char **map, int i, int j)
 	if (map[i][j] == 69 && !flag[1])
 		flag[1] = 1;
 	else if (map[i][j] == 69)
+		return (1);
+	return (0);
+}
+
+int	at_least_one(char **map)
+{
+	int		i;
+	int		j;
+	int		flag;
+
+	i = -1;
+	flag = 0;
+	while (map[++i])
+	{
+		j = -1;
+		while (map[i][++j])
+		{
+			if (map[i][j] == 69)
+				flag++;
+			if (map[i][j] == 80)
+				flag++;
+		}
+	}
+	if (flag != 2)
 		return (1);
 	return (0);
 }

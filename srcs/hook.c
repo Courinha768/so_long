@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   hook.c                                             :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:16:32 by aappleto          #+#    #+#             */
-/*   Updated: 2022/10/29 18:16:34 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 18:01:23 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,14 +53,14 @@ void	is_collectible2(t_all *all, char d)
 	}
 }
 
-void	exit_game(t_all *all)
+int	exit_game(t_all *all)
 {
 	free_map(all->map);
 	mlx_destroy_window(all->mlx.mlx, all->mlx.win);
 	if (all->complete)
 	{
 		ft_putstr_fd("\n\033[1m\033[32mCongrats!\033[0m\nTotal moves = ", 1);
-		ft_putnbr_fd(all->move_count, 1);
+		ft_putnbr_fd(all->move_count + 1, 1);
 		ft_putchar_fd('\n', 1);
 	}
 	else
@@ -68,7 +68,8 @@ void	exit_game(t_all *all)
 		ft_putstr_fd("\033[1m\033[31mGame Over!\033[0m \
 Thank you for playing\n", 1);
 	}
-	exit(1);
+	exit (1);
+	return (0);
 }
 
 int	key_hook(int keycode, t_all *all)

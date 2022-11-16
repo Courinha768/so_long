@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   verify.c                                           :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/09 20:01:38 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/09 20:01:40 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:24:24 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -54,6 +54,8 @@ int	correct_nbr_c(char **map)
 				flag = 1;
 		}
 	}
+	if (at_least_one(map))
+		return (1);
 	if (!flag)
 		return (1);
 	return (0);

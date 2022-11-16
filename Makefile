@@ -15,34 +15,36 @@ CFLAGS		=	-Wall -Werror -Wextra -g -fsanitize=address
 	@${CC} ${CFLAGS} ${HEAD} -c $< -o ${<:.c=.o}
 
 $(NAME)		:	${OBJS}
-	@make -C libft
-	@make -C mlx
+	@make -s -C libft
+	@make -s -C mlx
 	@${CC} ${CFLAGS} ${LD_FLAGS} ${OBJS} -o ${NAME} -lft ${MLX_FLAGS}
 
 all			:	${NAME}
 
 bonus		:	${BOBJS}
-	@make -C libft
-	@make -C mlx
+	@make -s -C libft
+	@make -s -C mlx
 	@${CC} ${CFLAGS} ${LD_FLAGS} ${BOBJS} -o ${NAME} -lft ${MLX_FLAGS}
 
-val			:	${NAME}
-	@valgrind \
-	--leak-check=full --tool=memcheck \
-	--show-reachable=yes \
-	--track-fds=yes \
-	--errors-for-leak-kinds=all \
-	--show-leak-kinds=all ${EXC}
+# val			:	${NAME}
+# 	@valgrind \
+# 	--leak-check=full --tool=memcheck \
+# 	--show-reachable=yes \
+# 	--track-fds=yes \
+# 	--errors-for-leak-kinds=all \
+# 	--show-leak-kinds=all ./so_long	maps/map1.ber
 
 clean		:
-	@make clean -C libft
-	@make clean -C mlx
+	@make -s clean $@ -C libft
+	@make -s clean $@ -C mlx
 	@rm -rf ${OBJS}
 	@rm -rf ${BOBJS}
+	@echo "object files removed."
 
 fclean		:	clean
-	@make fclean -C libft
+	@make -s fclean $@ -C libft
 	@rm -rf ${NAME}
+	@echo "binary file removed."
 
 re			:	fclean all
 

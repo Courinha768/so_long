@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.c                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:16:49 by aappleto          #+#    #+#             */
-/*   Updated: 2022/10/29 18:16:50 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:57:17 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	print_error(int value)
 	else if (value == 4)
 		write(1, "map not correctly contructed\n", 30);
 	else if (value == 5)
-		write(1, "this map is impossible\n", 12);
+		write(1, "this map is impossible\n", 24);
 	return (0);
 }
 
@@ -67,6 +67,7 @@ void	start_game(char **map)
 	init_all(&all, map);
 	render(&all);
 	mlx_key_hook(all.mlx.win, key_hook, &all);
+	mlx_hook(all.mlx.win, 17, 1L << 17, exit_game, &all);
 	mlx_loop(all.mlx.mlx);
 }
 

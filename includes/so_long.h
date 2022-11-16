@@ -3,10 +3,10 @@
 /*                                                        :::      ::::::::   */
 /*   so_long.h                                          :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
-/*   By: aappleto <marvin@42.fr>                    +#+  +:+       +#+        */
+/*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:13:35 by aappleto          #+#    #+#             */
-/*   Updated: 2022/10/29 18:13:39 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 17:59:16 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,11 +34,12 @@ int		sl_strlen_v(char **map);
 int		verify(int ac, char **av);
 int		verify_name(char *file);
 int		verify_map(char	*file_name);
-int 	is_possible(char *file_name);
+int		is_possible(char *file_name);
 
 int		not_token(char c);
 int		linelen(char **map);
 int		correct_nbr_c2(char **map, int i, int j);
+int		at_least_one(char **map);
 
 void	render(t_all *all);
 void	render_borders(char **map, t_vars mlx, t_field imgs);
@@ -63,7 +64,7 @@ void	update_mc(t_all *all);
 int		key_hook(int keycode, t_all *all);
 void	is_collectible(t_all *all, char d);
 void	is_collectible2(t_all *all, char d);
-void	exit_game(t_all *all);
+int		exit_game(t_all *all);
 
 char	**define_map(char *file_name);
 char	**get_map(int fd, int lc, char **map);
