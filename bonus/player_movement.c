@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/12 01:37:05 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/16 19:56:32 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:34:21 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	move_left(t_all *all)
 		{
 			put_img(all, all->field.grass2.img,
 				all->player.x * 32, all->player.y * 32);
-			put_img(all, all->player.player.img,
+			put_img(all, all->player.player2.img,
 				all->player.x * 32, (all->player.y - 1) * 32);
 			all->player.y--;
 			all->move_count++;

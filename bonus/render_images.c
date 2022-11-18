@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 23:04:27 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/16 19:37:54 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:33:03 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,5 +49,6 @@ void	define_player_imgs(t_all *all)
 
 	mlx = all->mlx.mlx;
 	all->player.player.img = create_img(mlx, "sprites/player.xpm");
+	all->player.player2.img = create_img(mlx, "sprites/player2.xpm");
 	all->player.enemy.img = create_img(mlx, "sprites/enemy.xpm");
 }

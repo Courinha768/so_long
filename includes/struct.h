@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:13:46 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/16 19:38:08 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:32:20 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ typedef struct s_field {
 typedef struct s_player {
 	t_data	player;
 	t_data	enemy;
+	t_data	player2;
 	int		x;
 	int		y;
 }	t_player;
@@ -67,6 +68,7 @@ typedef struct s_all {
 	int			collectible;
 	int			move_count;
 	int			complete;
+	int			h_size;
 }	t_all;
 
 typedef struct s_loc {

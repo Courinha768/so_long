@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/11/13 23:05:19 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/13 23:05:20 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:36:49 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,4 +49,5 @@ void	define_player_imgs(t_all *all)
 
 	mlx = all->mlx.mlx;
 	all->player.player.img = create_img(mlx, "sprites/player.xpm");
+	all->player.player2.img = create_img(mlx, "sprites/player2.xpm");
 }

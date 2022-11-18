@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:16:49 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/16 17:57:17 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:34:57 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -58,6 +58,7 @@ void	init_all(t_all *all, char **map)
 	all->move_count = 0;
 	all->collectible = count_collectible(map);
 	all->complete = 0;
+	all->h_size = w_s[0];
 }
 
 void	start_game(char **map)
@@ -68,6 +69,7 @@ void	start_game(char **map)
 	render(&all);
 	mlx_key_hook(all.mlx.win, key_hook, &all);
 	mlx_hook(all.mlx.win, 17, 1L << 17, exit_game, &all);
+	mlx_loop_hook(all.mlx.mlx, animation, &all);
 	mlx_loop(all.mlx.mlx);
 }
 

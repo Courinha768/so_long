@@ -6,7 +6,7 @@
 /*   By: aappleto <aappleto@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/10/29 18:13:35 by aappleto          #+#    #+#             */
-/*   Updated: 2022/11/16 17:59:16 by aappleto         ###   ########.fr       */
+/*   Updated: 2022/11/16 21:36:15 by aappleto         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,5 +80,7 @@ t_loc	get_entrance(char **map);
 t_loc	new_loc(int x, int y);
 int		is_passable(char c);
 int		equals_loc(t_loc coord1, t_loc coord2);
+
+int		animation(t_all *all);
 
 #endif
